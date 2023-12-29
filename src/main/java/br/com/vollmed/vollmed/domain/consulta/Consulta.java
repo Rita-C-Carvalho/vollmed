@@ -37,6 +37,14 @@ public class Consulta {
     public Consulta(@Valid DadosCadastroConsulta consulta) {
     }
 
+    public Consulta(Consulta consulta) {
+    }
+
+    public Consulta(DadosCadastroConsulta dadosConsulta, Medico medico, Paciente paciente) {
+        this.medico = medico;
+        this.paciente = paciente;
+    }
+
     public void atualizaInfomacoes(@Valid DadosAtualizacaoConsulta dadosConsulta) {
         if (dadosConsulta.medico() != null) {
             this.medico = dadosConsulta.medico();

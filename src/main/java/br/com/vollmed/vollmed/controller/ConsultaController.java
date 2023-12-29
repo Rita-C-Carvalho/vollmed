@@ -2,7 +2,8 @@ package br.com.vollmed.vollmed.controller;
 
 import br.com.vollmed.vollmed.domain.consulta.*;
 import br.com.vollmed.vollmed.domain.medico.Medico;
-import br.com.vollmed.vollmed.domain.paciente.Paciente;
+import br.com.vollmed.vollmed.domain.medico.MedicoRepository;
+import br.com.vollmed.vollmed.domain.paciente.PacienteRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,16 +21,24 @@ public class ConsultaController {
     @Autowired
     private ConsultaRepository consultaRepository;
 
+    @Autowired
+    private MedicoRepository medicoRepository;
+
+    @Autowired
+    private PacienteRepository pacienteRepository;
+
     //MÉTODO PARA CADASTRAR CONSULTAS
     @PostMapping
     @Transactional
     //@RequestBody, É PARA DIZER QUE A INFORMAÇÃO ESTÁ VINDO DO CORPO DA REQUISIÇÃO.
-    public ResponseEntity cadastrarConsulta(@RequestBody @Valid Medico medico, Paciente paciente, UriComponentsBuilder uriBuilder){
-        var consulta = new Consulta(medico, paciente);
+    public ResponseEntity cadastrarConsulta(@RequestBody @Valid DadosCadastroConsulta dadosConsulta, UriComponentsBuilder uriBuilder){
+        var medico = medicoRepository.getReferenceById(dadosConsulta.id_medico());
+        var paciente = pacienteRepository.getReferenceById(dadosConsulta.id_paciente());
+        var consulta = new Consulta(dadosConsulta, medico, paciente);
         consultaRepository.save(consulta);
 
         var uri = uriBuilder.path("consultas/{id}").buildAndExpand(consulta.getId()).toUri();
-        return ResponseEntity.created(uri).body(new Consulta());
+        return ResponseEntity.created(uri).body(new Consulta(consulta));
     }
 
     //MÉTODO PARA LISTAR CONSULTAS
@@ -49,7 +58,7 @@ public class ConsultaController {
 
         //para fazer a atualização
         consulta.atualizaInfomacoes(dadosConsulta);
-        return ResponseEntity.ok(new Consulta());
+        return ResponseEntity.ok(new Consulta(consulta));
     }
 
 
