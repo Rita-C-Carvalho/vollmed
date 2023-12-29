@@ -5,8 +5,9 @@ import br.com.vollmed.vollmed.domain.paciente.Paciente;
 
 public record DadosCadastroConsulta(
 
-        Medico mediico,
+        Long id_medico,
 
-        Paciente paciente
+        Long id_paciente
 ) {
+
 }
