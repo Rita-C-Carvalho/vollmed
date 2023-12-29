@@ -6,8 +6,6 @@ import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.*;
 
-import java.util.List;
-
 @Entity(name = "Consulta")
 @Table(name = "consultas")
 @Getter
@@ -23,7 +21,7 @@ public class Consulta {
 
     @ManyToOne
     @JoinColumn(name = "id_medico")
-    private List<Medico> medico;
+    private Medico medico;
 
     @ManyToOne
     @JoinColumn(name = "id_paciente")
