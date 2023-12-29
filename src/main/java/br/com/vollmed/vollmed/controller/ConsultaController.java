@@ -1,6 +1,8 @@
 package br.com.vollmed.vollmed.controller;
 
 import br.com.vollmed.vollmed.domain.consulta.*;
+import br.com.vollmed.vollmed.domain.medico.Medico;
+import br.com.vollmed.vollmed.domain.paciente.Paciente;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,12 +24,12 @@ public class ConsultaController {
     @PostMapping
     @Transactional
     //@RequestBody, É PARA DIZER QUE A INFORMAÇÃO ESTÁ VINDO DO CORPO DA REQUISIÇÃO.
-    public ResponseEntity cadastrarConsulta(@RequestBody @Valid DadosCadastroConsulta dadosConsulta, UriComponentsBuilder uriBuilder){
-        var consulta = new Consulta(dadosConsulta);
+    public ResponseEntity cadastrarConsulta(@RequestBody @Valid Medico medico, Paciente paciente, UriComponentsBuilder uriBuilder){
+        var consulta = new Consulta(medico, paciente);
         consultaRepository.save(consulta);
 
         var uri = uriBuilder.path("consultas/{id}").buildAndExpand(consulta.getId()).toUri();
-        return ResponseEntity.created(uri).body(new Consulta(consulta));
+        return ResponseEntity.created(uri).body(new Consulta());
     }
 
     //MÉTODO PARA LISTAR CONSULTAS
@@ -47,7 +49,7 @@ public class ConsultaController {
 
         //para fazer a atualização
         consulta.atualizaInfomacoes(dadosConsulta);
-        return ResponseEntity.ok(new Consulta(consulta));
+        return ResponseEntity.ok(new Consulta());
     }
 
 

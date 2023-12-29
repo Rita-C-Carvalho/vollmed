@@ -28,13 +28,13 @@ public class Consulta {
     private Paciente paciente;
 
     private boolean ativo;
-    public Consulta(DadosCadastroConsulta dadosConsulta) {
+    public Consulta(Medico medico, Paciente paciente) {
         this.ativo = true;
-        this.medico = dadosConsulta.id_medico();
-        this.paciente = getPaciente();
+        this.medico = medico;
+        this.paciente = paciente;
     }
 
-    public Consulta(Consulta consulta) {
+    public Consulta(@Valid DadosCadastroConsulta consulta) {
     }
 
     public void atualizaInfomacoes(@Valid DadosAtualizacaoConsulta dadosConsulta) {
