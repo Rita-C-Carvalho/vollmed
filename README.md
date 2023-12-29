@@ -27,9 +27,6 @@ href="https://cursos.alura.com.br/course/spring-boot-3-desenvolva-api-rest-java"
 - `Funcionalidade 6` `Exclusão de médicos`: A API possuir uma funcionalidade que permita a exclusão de médicos e pacientes cadastrados.A exclusão não deve apagar os dados, mas torná-los como "inativo" no sistema.
 
 
-
-- `Funcionalidade 9` `Cadastro de Consultas`: A API precisa estar apto a cadastrar consultas. Para cadastrar uma consulta, devem ser informados o nome do paciente, o nome do médico, a especialidade, o horário e data da consulta. Todos os campos são obrigatórios.
-
 ## ✔️ Tecnologias utilizadas
 
 <div align="left">
