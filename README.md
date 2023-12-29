@@ -28,7 +28,7 @@ href="https://cursos.alura.com.br/course/spring-boot-3-desenvolva-api-rest-java"
 
 
 
-- - `Funcionalidade 9` `Cadastro de Consultas`: A API precisa estar apto a cadastrar consultas. Para cadastrar uma consulta, devem ser informados o nome do paciente, o nome do médico, a especialidade, o horário e data da consulta. Todos os campos são obrigatórios.
+- `Funcionalidade 9` `Cadastro de Consultas`: A API precisa estar apto a cadastrar consultas. Para cadastrar uma consulta, devem ser informados o nome do paciente, o nome do médico, a especialidade, o horário e data da consulta. Todos os campos são obrigatórios.
 
 ## ✔️ Tecnologias utilizadas
 
