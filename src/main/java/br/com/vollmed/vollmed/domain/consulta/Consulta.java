@@ -1,5 +1,6 @@
 package br.com.vollmed.vollmed.domain.consulta;
 
+import br.com.vollmed.vollmed.domain.medico.DadosCadastroMedico;
 import br.com.vollmed.vollmed.domain.medico.Medico;
 import br.com.vollmed.vollmed.domain.paciente.Paciente;
 import jakarta.persistence.*;
@@ -27,10 +28,10 @@ public class Consulta {
     @JoinColumn(name = "id_paciente")
     private Paciente paciente;
 
-    private boolean ativo;
-    public Consulta(Medico medico, Paciente paciente) {
-        this.ativo = true;
-        this.medico = medico;
+    private boolean ativo = true;
+    public Consulta(DadosCadastroMedico dados, Paciente paciente) {
+
+        this.medico = new Medico(dados);
         this.paciente = paciente;
     }
 
