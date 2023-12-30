@@ -28,6 +28,13 @@ href="https://cursos.alura.com.br/course/spring-boot-3-desenvolva-api-rest-java"
 
 - `Funcionalidade 7` `Cadastro de consultas`: A API deve possuir uma funcionalidade que permita o cadastro de consultas, de acordo com os médicos e pacientes cadastrados. Para isso deve ser informado o id do médico, o id d paciente, a data e hora da consulta, se a consulta é particular ou convenio, e o valor da consulta caso seja particular.
 
+- `Funcionalidade 8` `Listagem de consultas`:
+
+- `Funcionalidade 9` `Atualização de consultas`:
+
+- `Funcionalidade 10` `Exclusão de consultas`:
+
+ 
 ## ✔️ Tecnologias utilizadas
 
 <div align="left">
