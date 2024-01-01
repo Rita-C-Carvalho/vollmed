@@ -47,7 +47,8 @@ public class ConsultaController {
     //MÉTODO PARA LISTAR CONSULTAS
     @GetMapping
     public ResponseEntity<Page<DadosListagemConsulta>> listar(@PageableDefault(size = 50) Pageable paginacao){
-        var page = consultaRepository.findAllByAtivoTrue(paginacao).map(DadosListagemConsulta::new);
+        Page<DadosListagemConsulta> page;
+        page = consultaRepository.findAllByAtivoTrue(paginacao).map(DadosListagemConsulta::new);
         return ResponseEntity.ok(page);
     }
 
