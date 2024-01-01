@@ -22,13 +22,13 @@ href="https://cursos.alura.com.br/course/spring-boot-3-desenvolva-api-rest-java"
 
 - `Funcionalidade 4` `Listagem de pacientes`: A API deve possuir uma funcionalidade de listagem de pacientes, na qual as seguintes informações, de cada um dos pacientes cadastrados, deverão ser exibidas: Nome, E-mail, CPF e Telefone.
 
-- `Funcionalidade 5` `Atualização de cadastro de médico e paciente`: A API deve possuir uma funcionalidade de atualização tanto para o cadastro de médicos como para o cadastro de pacientes, de acordo com a ID respectiva.
+- `Funcionalidade 5` `Atualização de cadastro de médico e paciente e consulta`: A API deve possuir uma funcionalidade de atualização tanto para o cadastro de médicos, pacientes e consutas, de acordo com a ID respectiva.
 
-- `Funcionalidade 6` `Exclusão de médicos`: A API deve possuir uma funcionalidade que permita a exclusão de médicos e pacientes cadastrados.A exclusão não deve apagar os dados, mas torná-los como "inativo" no sistema.
+- `Funcionalidade 6` `Exclusão de médicos, pacientes e consultas`: A API deve possuir uma funcionalidade que permita a exclusão de médicos, pacientes e consultas cadastrados. A exclusão não deve apagar os dados, mas torná-los como "inativo" no sistema.
 
 - `Funcionalidade 7` `Cadastro de consultas`: A API deve possuir uma funcionalidade que permita o cadastro de consultas, de acordo com os médicos e pacientes cadastrados. Para isso deve ser informado o id do médico, o id d paciente, a data e hora da consulta, se a consulta é particular ou convenio, e o valor da consulta caso seja particular.
 
-- `Funcionalidade 8` `Listagem de consultas`:
+- `Funcionalidade 8` `Listagem de consultas`: A API deve possuir uma funcionalidade de listagem de consultas, na qual as seguintes informações deverão ser exibidas: Medico, Paciente, data da consulta, hora da consulta e forma de pagamento (Convenio ou Particular).
 
 - `Funcionalidade 9` `Atualização de consultas`:
 
