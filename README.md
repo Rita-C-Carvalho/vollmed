@@ -30,9 +30,6 @@ href="https://cursos.alura.com.br/course/spring-boot-3-desenvolva-api-rest-java"
 
 - `Funcionalidade 8` `Listagem de consultas`: A API deve possuir uma funcionalidade de listagem de consultas, na qual as seguintes informações deverão ser exibidas: Medico, Paciente, data da consulta, hora da consulta e forma de pagamento (Convenio ou Particular).
 
-- `Funcionalidade 9` `Atualização de consultas`:
-
-- `Funcionalidade 10` `Exclusão de consultas`:
 
  
 ## ✔️ Tecnologias utilizadas
