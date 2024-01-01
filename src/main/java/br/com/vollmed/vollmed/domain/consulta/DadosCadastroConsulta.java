@@ -1,13 +1,12 @@
 package br.com.vollmed.vollmed.domain.consulta;
 
-import br.com.vollmed.vollmed.domain.medico.Medico;
-import br.com.vollmed.vollmed.domain.paciente.Paciente;
-
 public record DadosCadastroConsulta(
-
+        String dataConsulta,
+        FormaDePagamento formaDePagamento,
+        String horaConsulta,
         Long id_medico,
-
         Long id_paciente
-) {
+
+        ) {
 
 }

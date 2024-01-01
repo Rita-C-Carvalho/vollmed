@@ -1,6 +1,5 @@
 package br.com.vollmed.vollmed.domain.consulta;
 
-import br.com.vollmed.vollmed.domain.medico.DadosCadastroMedico;
 import br.com.vollmed.vollmed.domain.medico.Medico;
 import br.com.vollmed.vollmed.domain.paciente.Paciente;
 import jakarta.persistence.*;
@@ -28,30 +27,45 @@ public class Consulta {
     @JoinColumn(name = "id_paciente")
     private Paciente paciente;
 
+    private String dataConsulta;
+
+    private String horaConsulta;
+
+    @Enumerated(EnumType.STRING)
+    private FormaDePagamento formaDePagamento;
+
     private boolean ativo = true;
-    public Consulta(DadosCadastroMedico dados, Paciente paciente) {
-
-        this.medico = new Medico(dados);
-        this.paciente = paciente;
-    }
-
-    public Consulta(@Valid DadosCadastroConsulta consulta) {
-    }
 
     public Consulta(Consulta consulta) {
     }
 
-    public Consulta(DadosCadastroConsulta dadosConsulta, Medico medico, Paciente paciente) {
+
+    public Consulta(String dataConsulta, String horaConsulta, FormaDePagamento formaDePagamento,
+                    Medico medico, Paciente paciente) {
+
+        this.dataConsulta = dataConsulta;
+        this.horaConsulta = horaConsulta;
+        this.formaDePagamento = formaDePagamento;
         this.medico = medico;
         this.paciente = paciente;
     }
 
-    public void atualizaInfomacoes(@Valid DadosAtualizacaoConsulta dadosConsulta) {
-        if (dadosConsulta.medico() != null) {
-            this.medico = dadosConsulta.medico();
+
+    public void atualizaInfomacoes(@Valid Medico medico, Paciente paciente, DadosAtualizacaoConsulta dadosConsulta) {
+        if (medico != null) {
+            this.medico = medico;
         }
-        if (dadosConsulta.paciente() != null) {
-            this.paciente = dadosConsulta.paciente();
+        if (paciente != null) {
+            this.paciente = paciente;
+        }
+        if (dataConsulta != null) {
+            this.dataConsulta = dadosConsulta.dataConsulta();
+        }
+        if (horaConsulta != null) {
+            this.horaConsulta = dadosConsulta.horaConsulta();
+        }
+        if (formaDePagamento != null) {
+            this.formaDePagamento = dadosConsulta.formaDePagamento();
         }
     }
 

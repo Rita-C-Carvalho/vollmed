@@ -6,8 +6,15 @@ import br.com.vollmed.vollmed.domain.paciente.Paciente;
 public record DadosAtualizacaoConsulta(
         Long id,
 
-        Medico medico,
+        Long id_medico,
 
-        Paciente paciente
+        Long id_paciente,
+
+        String dataConsulta,
+
+        String horaConsulta,
+
+        FormaDePagamento formaDePagamento
+
 ) {
 }

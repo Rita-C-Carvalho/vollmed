@@ -3,6 +3,7 @@ package br.com.vollmed.vollmed.controller;
 import br.com.vollmed.vollmed.domain.consulta.*;
 import br.com.vollmed.vollmed.domain.medico.Medico;
 import br.com.vollmed.vollmed.domain.medico.MedicoRepository;
+import br.com.vollmed.vollmed.domain.paciente.Paciente;
 import br.com.vollmed.vollmed.domain.paciente.PacienteRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,19 +32,21 @@ public class ConsultaController {
     @PostMapping
     @Transactional
     //@RequestBody, É PARA DIZER QUE A INFORMAÇÃO ESTÁ VINDO DO CORPO DA REQUISIÇÃO.
-    public ResponseEntity cadastrarConsulta(@RequestBody @Valid DadosCadastroConsulta dadosConsulta, UriComponentsBuilder uriBuilder){
+    public ResponseEntity cadastrarConsulta(@RequestBody DadosCadastroConsulta dadosConsulta, UriComponentsBuilder uriBuilder){
         var medico = medicoRepository.getReferenceById(dadosConsulta.id_medico());
         var paciente = pacienteRepository.getReferenceById(dadosConsulta.id_paciente());
-        var consulta = new Consulta(dadosConsulta, medico, paciente);
-        consultaRepository.save(consulta);
-
-        var uri = uriBuilder.path("consultas/{id}").buildAndExpand(consulta.getId()).toUri();
-        return ResponseEntity.created(uri).body(new Consulta(consulta));
+        var dataConsulta = dadosConsulta.dataConsulta();
+        var horaConsulta = dadosConsulta.horaConsulta();
+        var formaDePagamento = dadosConsulta.formaDePagamento();
+        var novaConsulta = new Consulta(dataConsulta, horaConsulta, formaDePagamento, medico, paciente);
+        consultaRepository.save(novaConsulta);
+        var uri = uriBuilder.path("consultas/{id}").buildAndExpand(novaConsulta.getId()).toUri();
+        return ResponseEntity.created(uri).body(new Consulta(novaConsulta));
     }
 
     //MÉTODO PARA LISTAR CONSULTAS
     @GetMapping
-    public ResponseEntity<Page<DadosListagemConsulta>> listar(@PageableDefault(size = 10) Pageable paginacao){
+    public ResponseEntity<Page<DadosListagemConsulta>> listar(@PageableDefault(size = 50) Pageable paginacao){
         var page = consultaRepository.findAllByAtivoTrue(paginacao).map(DadosListagemConsulta::new);
         return ResponseEntity.ok(page);
     }
@@ -52,13 +55,15 @@ public class ConsultaController {
     //MÉTODO PARA ATUALIZAR CONSULTAS
     @PutMapping
     @Transactional
-    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoConsulta dadosConsulta) {
+    public ResponseEntity atualizar(@RequestBody @Valid  DadosAtualizacaoConsulta dadosConsulta) {
         // para pegar as informações no banco de dados pela id
-        var consulta = consultaRepository.getReferenceById(dadosConsulta.id());
+        var medico = medicoRepository.getReferenceById(dadosConsulta.id_medico());
+        var paciente = pacienteRepository.getReferenceById(dadosConsulta.id_paciente());
+        var novaConsulta = consultaRepository.getReferenceById(dadosConsulta.id());
 
         //para fazer a atualização
-        consulta.atualizaInfomacoes(dadosConsulta);
-        return ResponseEntity.ok(new Consulta(consulta));
+        novaConsulta.atualizaInfomacoes(medico, paciente, dadosConsulta);
+        return ResponseEntity.ok(new Consulta(novaConsulta));
     }
 
 
