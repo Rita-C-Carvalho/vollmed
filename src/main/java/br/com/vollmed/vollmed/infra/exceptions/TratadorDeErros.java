@@ -1,4 +1,4 @@
-package br.com.vollmed.vollmed.infra;
+package br.com.vollmed.vollmed.infra.exceptions;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
