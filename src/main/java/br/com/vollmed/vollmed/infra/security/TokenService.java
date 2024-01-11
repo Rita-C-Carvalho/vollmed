@@ -4,17 +4,16 @@ import br.com.vollmed.vollmed.domain.usuario.Usuario;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-import java.util.Date;
 
 @Service
-public class TokenSrvice {
+public class TokenService {
 
     @Value("${api.security.token.secret}")
     private String secret;
@@ -30,6 +29,22 @@ public class TokenSrvice {
         } catch (JWTCreationException exception){
             throw new RuntimeException("erro ao gerar Token JWT", exception);
         }
+    }
+
+    //MÉTODO PARA VALIDAR O TOKEN
+    public String getSubject(String tokenJWT ){
+        try {
+            var algoritimo = Algorithm.HMAC256(secret);
+            return JWT.require(algoritimo)
+                    .withIssuer("API Voll Med")
+                    .build()
+                    .verify(tokenJWT)
+                    .getSubject();
+
+        } catch (JWTVerificationException exception){
+            throw new RuntimeException("Token JWT inválido ou expirado");
+        }
+
     }
 
     //MÉTODO PARA CRIAR TEMPO DE EXPIRAÇÃO PARA O TOKEN

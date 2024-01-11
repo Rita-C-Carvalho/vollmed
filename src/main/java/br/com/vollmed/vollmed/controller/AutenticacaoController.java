@@ -3,7 +3,7 @@ package br.com.vollmed.vollmed.controller;
 import br.com.vollmed.vollmed.domain.usuario.DadosAutenticacao;
 import br.com.vollmed.vollmed.domain.usuario.Usuario;
 import br.com.vollmed.vollmed.infra.DadosTokenJWT;
-import br.com.vollmed.vollmed.infra.security.TokenSrvice;
+import br.com.vollmed.vollmed.infra.security.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +22,7 @@ public class AutenticacaoController {
     private AuthenticationManager manager;
 
     @Autowired
-    private TokenSrvice tokenSrvice;
+    private TokenService tokenSrvice;
 
     @PostMapping
     public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dadosAutenticacao){
@@ -30,6 +30,7 @@ public class AutenticacaoController {
         var authentication = manager.authenticate(authenticationToken);
 
         var tokenJWT = tokenSrvice.gerarToken((Usuario) authentication.getPrincipal());
+        System.out.println(tokenJWT);
         return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
     }
 }
