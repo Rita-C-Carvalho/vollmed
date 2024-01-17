@@ -1,9 +1,10 @@
 package br.com.vollmed.vollmed.domain.consulta;
 
+import java.time.LocalDateTime;
+
 public record DadosCadastroConsulta(
-        String dataConsulta,
+        LocalDateTime dataConsulta,
         FormaDePagamento formaDePagamento,
-        String horaConsulta,
         Long id_medico,
         Long id_paciente
 

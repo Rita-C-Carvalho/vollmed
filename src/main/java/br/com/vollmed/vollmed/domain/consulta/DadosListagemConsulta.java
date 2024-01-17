@@ -2,9 +2,11 @@ package br.com.vollmed.vollmed.domain.consulta;
 
 import br.com.vollmed.vollmed.domain.medico.Especialidade;
 
+import java.time.LocalDateTime;
+
 public record DadosListagemConsulta(Long id, Long id_medico, String nomeMedico, String crmMedico, Especialidade especialidade,
                                     Long id_paciente, String nomePaciente, String  cpfPaciente,
-                                    String dataConsulta, String HoraConsulta, FormaDePagamento formaDePagamento){
+                                    LocalDateTime dataConsulta, FormaDePagamento formaDePagamento){
 
     public DadosListagemConsulta(Consulta consulta){
         this(consulta.getId(),
@@ -16,7 +18,6 @@ public record DadosListagemConsulta(Long id, Long id_medico, String nomeMedico, 
                 consulta.getPaciente().getNome(),
                 consulta.getPaciente().getCpf(),
                 consulta.getDataConsulta(),
-                consulta.getHoraConsulta(),
                 consulta.getFormaDePagamento());
     }
 

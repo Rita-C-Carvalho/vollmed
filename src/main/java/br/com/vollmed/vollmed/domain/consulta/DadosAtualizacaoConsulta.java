@@ -3,6 +3,8 @@ package br.com.vollmed.vollmed.domain.consulta;
 import br.com.vollmed.vollmed.domain.medico.Medico;
 import br.com.vollmed.vollmed.domain.paciente.Paciente;
 
+import java.time.LocalDateTime;
+
 public record DadosAtualizacaoConsulta(
         Long id,
 
@@ -10,9 +12,7 @@ public record DadosAtualizacaoConsulta(
 
         Long id_paciente,
 
-        String dataConsulta,
-
-        String horaConsulta,
+        LocalDateTime dataConsulta,
 
         FormaDePagamento formaDePagamento
 

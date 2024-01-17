@@ -7,6 +7,8 @@ import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity(name = "Consulta")
 @Table(name = "consultas")
 @Getter
@@ -28,9 +30,7 @@ public class Consulta {
     @JoinColumn(name = "id_paciente")
     private Paciente paciente;
 
-    private String dataConsulta;
-
-    private String horaConsulta;
+    private LocalDateTime dataConsulta;
 
     @Enumerated(EnumType.STRING)
     private FormaDePagamento formaDePagamento;
@@ -41,11 +41,10 @@ public class Consulta {
     }
 
 
-    public Consulta(String dataConsulta, String horaConsulta, FormaDePagamento formaDePagamento,
+    public Consulta(LocalDateTime dataConsulta, FormaDePagamento formaDePagamento,
                     Medico medico, Paciente paciente) {
 
         this.dataConsulta = dataConsulta;
-        this.horaConsulta = horaConsulta;
         this.formaDePagamento = formaDePagamento;
         this.medico = medico;
         this.paciente = paciente;
@@ -61,9 +60,6 @@ public class Consulta {
         }
         if (dataConsulta != null) {
             this.dataConsulta = dadosConsulta.dataConsulta();
-        }
-        if (horaConsulta != null) {
-            this.horaConsulta = dadosConsulta.horaConsulta();
         }
         if (formaDePagamento != null) {
             this.formaDePagamento = dadosConsulta.formaDePagamento();

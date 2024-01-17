@@ -36,9 +36,8 @@ public class ConsultaController {
         var medico = medicoRepository.getReferenceById(dadosConsulta.id_medico());
         var paciente = pacienteRepository.getReferenceById(dadosConsulta.id_paciente());
         var dataConsulta = dadosConsulta.dataConsulta();
-        var horaConsulta = dadosConsulta.horaConsulta();
         var formaDePagamento = dadosConsulta.formaDePagamento();
-        var novaConsulta = new Consulta(dataConsulta, horaConsulta, formaDePagamento, medico, paciente);
+        var novaConsulta = new Consulta(dataConsulta, formaDePagamento, medico, paciente);
         consultaRepository.save(novaConsulta);
         var uri = uriBuilder.path("consultas/{id}").buildAndExpand(novaConsulta.getId()).toUri();
         return ResponseEntity.created(uri).body(new Consulta(novaConsulta));
